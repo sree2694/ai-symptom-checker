@@ -1,8 +1,9 @@
-# utils/openai_helper.py
 import openai
 import os
 import json
-
+import logging
+from dotenv import load_dotenv
+load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def get_conditions(age: int, gender: str, symptoms: list[str]):
@@ -22,20 +23,25 @@ def get_conditions(age: int, gender: str, symptoms: list[str]):
     )
 
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[{"role": "user", "content": prompt}],
+        logging.info(f"Sending request to OpenAI with prompt: {prompt[:100]}...")  # Log part of the prompt for debugging
+        response = openai.Completion.create(
+            model="gpt-3.5-turbo",  # or other models
+            prompt=prompt,
             temperature=0.5,
             max_tokens=500
         )
-        message = response['choices'][0]['message']['content']
+        message = response['choices'][0]['text']
         
         # Parse the JSON from GPT response
+        logging.info(f"OpenAI response: {message[:100]}...")  # Log part of the response for debugging
         data = json.loads(message.strip())
         return data
     except json.JSONDecodeError as je:
+        logging.error(f"JSON decode error: {je}")
         return {"error": "Failed to parse GPT response. Check formatting.", "raw": message}
-    except openai.error.OpenAIError as oe:
+    except openai.OpenAIError as oe:
+        logging.error(f"OpenAI API error: {str(oe)}")
         return {"error": f"OpenAI API error: {str(oe)}"}
     except Exception as e:
+        logging.error(f"Unexpected error: {str(e)}")
         return {"error": f"Unexpected error: {str(e)}"}
