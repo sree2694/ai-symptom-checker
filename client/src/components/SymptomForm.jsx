@@ -38,11 +38,13 @@ const SymptomForm = () => {
       gender,
       symptoms,
     };
-    console.log("Sending request with payload:", payload);  // Log the payload
+    console.log("Sending request with payload:", payload);
+
     try {
       const res = await axios.post("http://localhost:8000/api/check-symptoms", payload);
       setResult(res.data);
     } catch (err) {
+      console.error("Error submitting symptoms:", err);
       setResult({ error: err.message });
     } finally {
       setLoading(false);
@@ -116,15 +118,13 @@ const SymptomForm = () => {
           {result.error ? (
             <Typography color="error">{result.error}</Typography>
           ) : (
-            result.conditions?.map((c, i) => (
-              <Card key={i} sx={{ mb: 2 }}>
-                <CardContent>
-                  <Typography variant="h6">{c.name}</Typography>
-                  <Typography>Probability: {c.probability}</Typography>
-                  <Typography>Suggestion: {c.suggestion}</Typography>
-                </CardContent>
-              </Card>
-            ))
+            <Card sx={{ mt: 2 }}>
+              <CardContent>
+                <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
+                  {result.result}
+                </Typography>
+              </CardContent>
+            </Card>
           )}
         </Box>
       )}
