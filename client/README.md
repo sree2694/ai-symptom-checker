@@ -1,15 +1,10 @@
-Here is a `README.md` tailored specifically for the **client (React frontend)** of your MedAssist AI project:
-
----
-
-```markdown
 # 🩺 MedAssist AI – Symptom Checker (Frontend)
 
 This is the **React frontend** for the MedAssist AI project — a full-stack AI-powered healthcare assistant that helps users check symptoms and get suggestions using **AI (Cohere)** and **ML models**.
 
 ## 🌐 Live Demo
 
-👉 [View App on Vercel (if deployed)](https://your-app-url.vercel.app)
+👉 [View App on Vercel](https://ai-symptom-checker-delta.vercel.app/)
 
 ---
 
