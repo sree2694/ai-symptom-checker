@@ -3,5 +3,6 @@ uvicorn
 cohere
 python-dotenv
 httpx
-motor
-pip freeze > requirements.txt
+pydantic
+scikit-learn
+pandas

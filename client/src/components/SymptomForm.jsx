@@ -5,9 +5,11 @@ import {
   Box,
   Typography,
   Chip,
-  Card,
-  CardContent,
-  MenuItem
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Select,
+  CircularProgress
 } from "@mui/material";
 import axios from "axios";
 
@@ -18,6 +20,7 @@ const SymptomForm = () => {
   const [symptoms, setSymptoms] = useState([]);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [model, setModel] = useState("cohere"); // default to Cohere AI
 
   const handleAddSymptom = () => {
     if (symptomInput && !symptoms.includes(symptomInput.toLowerCase())) {
@@ -38,10 +41,15 @@ const SymptomForm = () => {
       gender,
       symptoms,
     };
+    const url =
+      model === "cohere"
+        ? "http://localhost:8000/api/check-symptoms"
+        : "http://localhost:8000/api/predict-disease"; // Use appropriate endpoint based on model
+
     console.log("Sending request with payload:", payload);
 
     try {
-      const res = await axios.post("http://localhost:8000/api/check-symptoms", payload);
+      const res = await axios.post(url, payload);
       setResult(res.data);
     } catch (err) {
       console.error("Error submitting symptoms:", err);
@@ -80,6 +88,19 @@ const SymptomForm = () => {
         <MenuItem value="other">Other</MenuItem>
       </TextField>
 
+      <FormControl fullWidth margin="normal">
+        <InputLabel id="model-select-label">Prediction Model</InputLabel>
+        <Select
+          labelId="model-select-label"
+          value={model}
+          label="Prediction Model"
+          onChange={(e) => setModel(e.target.value)}
+        >
+          <MenuItem value="cohere">Cohere AI</MenuItem>
+          <MenuItem value="ml">Traditional ML Model</MenuItem>
+        </Select>
+      </FormControl>
+
       <TextField
         label="Add Symptom"
         fullWidth
@@ -93,7 +114,7 @@ const SymptomForm = () => {
           <Chip
             key={index}
             label={sym}
-            onDelete={() => setSymptoms(symptoms.filter(s => s !== sym))}
+            onDelete={() => setSymptoms(symptoms.filter((s) => s !== sym))}
             sx={{ m: 0.5 }}
           />
         ))}
@@ -106,7 +127,7 @@ const SymptomForm = () => {
         onClick={handleSubmit}
         disabled={loading}
       >
-        {loading ? "Checking..." : "Submit"}
+        {loading ? <CircularProgress size={24} /> : "Submit"}
       </Button>
 
       {result && (
@@ -118,13 +139,11 @@ const SymptomForm = () => {
           {result.error ? (
             <Typography color="error">{result.error}</Typography>
           ) : (
-            <Card sx={{ mt: 2 }}>
-              <CardContent>
-                <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
-                  {result.result}
-                </Typography>
-              </CardContent>
-            </Card>
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="body1" sx={{ whiteSpace: "pre-line" }}>
+                {result.result || result.predicted_disease}
+              </Typography>
+            </Box>
           )}
         </Box>
       )}
