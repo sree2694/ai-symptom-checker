@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+Here is a `README.md` tailored specifically for the **client (React frontend)** of your MedAssist AI project:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+```markdown
+# 🩺 MedAssist AI – Symptom Checker (Frontend)
 
-In the project directory, you can run:
+This is the **React frontend** for the MedAssist AI project — a full-stack AI-powered healthcare assistant that helps users check symptoms and get suggestions using **AI (Cohere)** and **ML models**.
 
-### `npm start`
+## 🌐 Live Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+👉 [View App on Vercel (if deployed)](https://your-app-url.vercel.app)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🚀 Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Input age, gender, and multiple symptoms
+- Choose between AI (Cohere) or ML (Random Forest) model
+- Clean UI with Material-UI components
+- Real-time results shown directly from backend predictions
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📁 Folder Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+client/
+├── public/
+│   └── index.html
+├── src/
+│   ├── components/
+│   │   └── SymptomForm.jsx
+│   └── App.jsx
+├── package.json
+└── README.md
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🧰 Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **React.js**
+- **Material-UI**
+- **Axios**
+- **JavaScript (ES6)**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## ⚙️ Getting Started
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Prerequisites
 
-## Learn More
+- Node.js >= 14.x
+- npm or yarn
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Install Dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+cd client
+npm install
+```
 
-### Code Splitting
+### Start Development Server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm start
+```
 
-### Analyzing the Bundle Size
+The app will run on [http://localhost:3000](http://localhost:3000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🔗 API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Ensure your FastAPI backend is running at `http://localhost:8000`.
 
-### Advanced Configuration
+| Endpoint | Purpose |
+|----------|---------|
+| `/api/check-symptoms` | Uses Cohere AI to return suggestions |
+| `/api/predict-disease` | Uses traditional ML model to predict disease |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## 🖼️ Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![UI Screenshot](./src/assets/Interface.png)
+![AI Response Screenshot](./src/assets/AI%20Response.png)
+![Traditional ML Screenshot](./src/assets/Traditional%20ML.png)
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📌 TODOs
+
+- [ ] Improve symptom input with autocomplete
+- [ ] Add chatbot interface
+- [ ] Mobile responsive tweaks
+
+---
+
+## 🧑‍💻 Author
+
+Developed by [Sreekanth]  
+<!-- 🔗 [LinkedIn](https://linkedin.com/in/yourname) | [Portfolio](https://yourportfolio.com) -->
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+```
+
+---
