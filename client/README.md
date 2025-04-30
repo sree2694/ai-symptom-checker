@@ -96,7 +96,7 @@ Ensure your FastAPI backend is running at `http://localhost:8000`.
 ## 🧑‍💻 Author
 
 Developed by [Sreekanth]  
-<!-- 🔗 [LinkedIn](https://linkedin.com/in/yourname) | [Portfolio](https://yourportfolio.com) -->
+<!-- 🔗 [LinkedIn](https://www.linkedin.com/in/sreekanth-j-developer/) | [Portfolio](https://myportfolio-dusky-seven.vercel.app/) -->
 
 ---
 
